@@ -1,0 +1,11 @@
+{
+  "name": "capstone",
+  "version": "1.0.0",
+  "description": "light weight emr for developing countries",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "export NODE_ENV=test && jasmine"
+  },
+  "author": "",
+  "license": "ISC"
+}
