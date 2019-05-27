@@ -1,17 +1,21 @@
 {
   "development": {
-    "username": "root",
+    "username": "macuser",
     "password": null,
-    "database": "database_development",
+    "database": "capstone-dev",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "postgres",
+    "logging": false,
+    "operatorsAliases": false
   },
   "test": {
-    "username": "root",
+    "username": "macuser",
     "password": null,
-    "database": "database_test",
+    "database": "capstone-test",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "postgres",
+    "logging": false,
+    "operatorsAliases": false
   },
   "production": {
     "username": "root",

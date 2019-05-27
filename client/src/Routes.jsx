@@ -39,6 +39,11 @@ export default class Routes extends Component {
           path="/products"
         />
         <Route
+          component={Typography}
+          exact
+          path="/typography"
+        />
+        <Route
           component={Icons}
           exact
           path="/icons"

@@ -1,5 +1,5 @@
 {
-  "name": "react-material-dashboard",
+  "name": "client",
   "version": "0.2.0",
   "private": true,
   "proxy": "http://localhost:5000/",
@@ -32,7 +32,7 @@
     "classnames": "^2.2.6",
     "history": "^4.7.2",
     "moment": "^2.24.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.11.0",
     "prop-types": "^15.7.1",
     "react": "^16.8.6",
     "react-chartjs-2": "^2.7.4",
@@ -49,5 +49,12 @@
     "eslint-plugin-react": "^7.12.4",
     "prettier-eslint": "^8.8.2",
     "prettier-eslint-cli": "^4.7.1"
-  }
+  },
+  "description": "![license](https://img.shields.io/badge/license-MIT-blue.svg) [![GitHub issues](https://img.shields.io/github/issues/devias-io/react-material-dashboard.svg)](https://github.com/devias-io/react-material-dashboard/issues?q=is%3Aopen+is%3Aissue) [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/devias-io/react-material-dashboard.svg?maxAge=2592000)](https://github.com/devias-io/react-material-dashboard/issues?q=is%3Aissue+is%3Aclosed) [![Chat](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/BSHaUGR)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "author": "",
+  "license": "ISC"
 }
