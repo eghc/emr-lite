@@ -24,6 +24,7 @@ import { DisplayMode, SearchInput } from 'components';
 import styles from './styles';
 
 class UsersToolbar extends Component {
+
   render() {
     const { classes, className, selectedUsers } = this.props;
 
@@ -42,21 +43,6 @@ class UsersToolbar extends Component {
             </IconButton>
           )}
           <Button
-            className={classes.importButton}
-            size="small"
-            variant="outlined"
-          >
-            <ArrowDownwardIcon className={classes.importIcon} /> Import
-          </Button>
-          <Button
-            className={classes.exportButton}
-            size="small"
-            variant="outlined"
-          >
-            <ArrowUpwardIcon className={classes.exportIcon} />
-            Export
-          </Button>
-          <Button
             color="primary"
             size="small"
             variant="outlined"
@@ -67,10 +53,11 @@ class UsersToolbar extends Component {
         <div className={classes.row}>
           <SearchInput
             className={classes.searchInput}
-            placeholder="Search user"
+            placeholder="Search patient"
+            onKeyDown={this.props.handleKeyDown}
           />
           <span className={classes.spacer} />
-          <DisplayMode mode="list" />
+
         </div>
       </div>
     );

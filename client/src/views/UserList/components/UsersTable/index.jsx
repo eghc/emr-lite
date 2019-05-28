@@ -40,7 +40,8 @@ class UsersTable extends Component {
   };
 
   handleSelectAll = event => {
-    const { users, onSelect } = this.props;
+    //const { users} = this.state.users;
+    const {  onSelect,users } = this.props;
 
     let selectedUsers;
 
@@ -114,25 +115,14 @@ class UsersTable extends Component {
                     Name
                   </TableCell>
                   <TableCell align="left">ID</TableCell>
-                  <TableCell align="left">State</TableCell>
-                  <TableCell align="left">Phone</TableCell>
-                  <TableCell align="left">Birthdate</TableCell>
+                  <TableCell align="left">DOB</TableCell>
+                  <TableCell align="left">Gender</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {users
-                  .filter(user => {
-                    if (activeTab === 1) {
-                      return !user.returning;
-                    }
 
-                    if (activeTab === 2) {
-                      return user.returning;
-                    }
-
-                    return user;
-                  })
-                  .slice(0, rowsPerPage)
+                  .slice(this.state.page*10, this.state.page*10+rowsPerPage)
                   .map(user => (
                     <TableRow
                       className={classes.tableRow}
@@ -152,16 +142,16 @@ class UsersTable extends Component {
                           />
                           <Avatar
                             className={classes.avatar}
-                            src={user.avatarUrl}
+                            src={user.icon}
                           >
-                            {getInitials(user.name)}
+                            {getInitials(user.firstname)}
                           </Avatar>
                           <Link to="#">
                             <Typography
                               className={classes.nameText}
                               variant="body1"
                             >
-                              {user.name}
+                              {user.firstname} {user.lastname}
                             </Typography>
                           </Link>
                         </div>
@@ -170,13 +160,10 @@ class UsersTable extends Component {
                         {user.id}
                       </TableCell>
                       <TableCell className={classes.tableCell}>
-                        {user.address.state}
+                        {moment(user.dob).format('DD/MM/YYYY')}
                       </TableCell>
                       <TableCell className={classes.tableCell}>
-                        {user.phone}
-                      </TableCell>
-                      <TableCell className={classes.tableCell}>
-                        {moment(user.createdAt).format('DD/MM/YYYY')}
+                        {user.gender}
                       </TableCell>
                     </TableRow>
                   ))}
@@ -196,12 +183,14 @@ class UsersTable extends Component {
             onChangeRowsPerPage={this.handleChangeRowsPerPage}
             page={page}
             rowsPerPage={rowsPerPage}
-            rowsPerPageOptions={[5, 10, 25]}
+            rowsPerPageOptions={[]}
           />
         </PortletContent>
       </Portlet>
     );
   }
+
+
 }
 
 UsersTable.propTypes = {
