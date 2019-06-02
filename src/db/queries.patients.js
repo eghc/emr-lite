@@ -24,11 +24,14 @@ module.exports = {
   },
 
   addPatient(newPatient, callback){
+    let query = newPatient.firstname+newPatient.lastname;
     return Patients.create({
       firstname: newPatient.firstname,
       lastname: newPatient.lastname,
       dob: newPatient.dob,
-      icon: '/images/avatars/avatar_1.png'
+      icon: '/images/avatars/avatar_1.png',
+      gender: newPatient.gender,
+      query: query
     })
     .then((user) => {
       callback(null, user);
