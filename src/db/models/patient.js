@@ -12,6 +12,18 @@ module.exports = (sequelize, DataTypes) => {
     dob: {
       type: DataTypes.DATE,
       allowNull: false
+    },
+    icon:{
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    gender:{
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    query:{
+      type: DataTypes.STRING,
+      allowNull: false
     }
   }, {});
   Patient.associate = function(models) {
