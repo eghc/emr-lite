@@ -7,7 +7,7 @@
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "test": "export NODE_ENV=test && jasmine",
     "start": "node src/server.js",
-    "heroku-postbuild": "cd client  && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
