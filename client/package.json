@@ -41,6 +41,7 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
     "recompose": "^0.30.0",
+    "sequelize-cli": "^5.4.0",
     "underscore": "^1.9.1",
     "validate.js": "^0.12.0"
   },
