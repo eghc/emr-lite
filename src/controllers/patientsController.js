@@ -39,6 +39,14 @@ module.exports = {
   },
 
   addPatient(req,res,next){
+    //console.log(req.body);
+    patientQueries.addPatient(req.body, ()=>{
+      res.redirect("/dashboard");
+    });
+    // console.log(req.body.firstname);
+    // console.log(req.body.lastname);
+    // console.log(req.body.gender);
+
 
   }
 }
