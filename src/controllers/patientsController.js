@@ -40,8 +40,14 @@ module.exports = {
 
   addPatient(req,res,next){
     //console.log(req.body);
-    patientQueries.addPatient(req.body, ()=>{
-      res.redirect("/dashboard");
+    patientQueries.addPatient(req.body, (err, patient)=>{
+      if(err){
+        console.log(err);
+        res.redirect("/addpatient");
+      }else{
+        res.redirect("/patients");
+      }
+
     });
     // console.log(req.body.firstname);
     // console.log(req.body.lastname);
