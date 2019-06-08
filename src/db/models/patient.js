@@ -5,6 +5,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    middlename:{
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     lastname: {
       type: DataTypes.STRING,
       allowNull: false
@@ -19,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     gender:{
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false
     },
     query:{
       type: DataTypes.STRING,

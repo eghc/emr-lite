@@ -29,6 +29,7 @@ module.exports = {
     let query = `${newPatient.firstName}${newPatient.lastName}`.toLowerCase();
     return Patients.create({
       firstname: newPatient.firstName,
+      middlename: newPatient.middleName,
       lastname: newPatient.lastName,
       dob: newPatient.dob,
       icon: '/images/avatars/avatar_1.png',
