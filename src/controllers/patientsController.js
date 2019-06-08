@@ -45,7 +45,15 @@ module.exports = {
         console.log(err);
         res.redirect("/addpatient");
       }else{
-        res.redirect("/patients");
+        //update query to include ID
+        patientQueries.updatePatientQuery(patient, (e, p)=>{
+          if(e){
+            console.log(err);
+            res.redirect("/addpatient");
+          }else{
+            res.redirect("/patients");
+          }
+        });
       }
 
     });

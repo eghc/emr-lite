@@ -42,7 +42,19 @@ module.exports = {
       callback(err);
     })
   },
+  updatePatientQuery(patient, callback){
+    //let updatedPatient = patient;
+    return patient.update({
+      query: `${patient.id}`+patient.query
+    })
+    .then(() => {
+      callback(null, patient);
+    })
+    .catch((err) => {
+      callback(err);
+    });
 
+  },
   findPatients(query, callback){
 
     return Patients.findAll({
