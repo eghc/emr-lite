@@ -72,5 +72,16 @@ module.exports = {
       callback(err);
     })
 
+  },
+  getPatient(id, callback){
+    //let updatedPatient = patient;
+    return Patients.findById(id)
+     .then((patient) => {
+       callback(null, patient);
+     })
+     .catch((err) => {
+       callback(err);
+     });
+
   }
 }

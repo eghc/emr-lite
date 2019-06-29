@@ -35,7 +35,15 @@ module.exports = {
   },
 
   getPatient(req,res,next){
-
+    patientQueries.getPatient(req.params.id, (err, patient) => {
+      if(err){
+        //console.log(err);
+        res.send(err);
+      } else {
+        //console.log(patient);
+        res.send(patient);
+      }
+    });
   },
 
   addPatient(req,res,next){
@@ -48,10 +56,10 @@ module.exports = {
         //update query to include ID
         patientQueries.updatePatientQuery(patient, (e, p)=>{
           if(e){
-            console.log(err);
-            res.redirect("/addpatient");
+            //console.log(err);
+            res.send(400);
           }else{
-            res.redirect("/patients");
+            res.send(200);
           }
         });
       }
