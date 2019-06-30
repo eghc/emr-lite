@@ -1,4 +1,5 @@
 const patientQueries = require("../db/queries.patients.js");
+const contactQueries = require("../db/queries.contacts.js");
 
 module.exports = {
   // router.get('/api/hello', (req, res) => {
@@ -38,10 +39,21 @@ module.exports = {
     patientQueries.getPatient(req.params.id, (err, patient) => {
       if(err){
         //console.log(err);
-        res.send(err);
+        res.send(400);
       } else {
-        //console.log(patient);
-        res.send(patient);
+        //TODO: get most recent contact information
+        contactQueries.getRecent(req.params.id, (err1, contact) => {
+          //console.log(patient);
+          //console.log(contact);
+          if(err1){
+            res.send(400);
+          }else{
+            res.send({
+              patient: patient,
+              contact: contact
+            });
+          }
+        })
       }
     });
   },
@@ -51,23 +63,28 @@ module.exports = {
     patientQueries.addPatient(req.body, (err, patient)=>{
       if(err){
         console.log(err);
-        res.redirect("/addpatient");
+        res.send(400);
       }else{
         //update query to include ID
         patientQueries.updatePatientQuery(patient, (e, p)=>{
           if(e){
-            //console.log(err);
             res.send(400);
           }else{
-            res.send(200);
+            //TODO: create contact
+            //console.log(req.body);
+            contactQueries.create(patient.id, req.body, (ee, contact) =>{
+              //console.log(ee);
+              if(ee){
+                res.send(400);
+              }else{
+                res.send(200);
+              }
+            });
           }
         });
       }
 
     });
-    // console.log(req.body.firstname);
-    // console.log(req.body.lastname);
-    // console.log(req.body.gender);
 
 
   }

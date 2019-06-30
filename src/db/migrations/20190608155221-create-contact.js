@@ -12,10 +12,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       homephone: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       cellphone: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       street1: {
         type: Sequelize.STRING
@@ -26,7 +26,7 @@ module.exports = {
       state: {
         type: Sequelize.STRING
       },
-      country: {
+      zip: {
         type: Sequelize.STRING
       },
       patientId: {
