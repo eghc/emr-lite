@@ -1,5 +1,6 @@
 const patientQueries = require("../db/queries.patients.js");
 const contactQueries = require("../db/queries.contacts.js");
+const vitalQueries = require("../db/queries.vitals.js");
 
 module.exports = {
   // router.get('/api/hello', (req, res) => {
@@ -48,9 +49,19 @@ module.exports = {
           if(err1){
             res.send(400);
           }else{
-            res.send({
-              patient: patient,
-              contact: contact
+            //console.log("1");
+            vitalQueries.getRecent(req.params.id, (err2, vital) => {
+              //onsole.log(err2);
+              if(err2){
+                res.send(400);
+              }else{
+                //console.log("2");
+                res.send({
+                  patient: patient,
+                  contact: contact,
+                  vital: vital
+                });
+              }
             });
           }
         })
