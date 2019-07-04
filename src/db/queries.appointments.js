@@ -54,14 +54,16 @@ module.exports = {
      });
 
   },
-  getRecentAppointments(patientId, callback){
-    //let updatedPatient = patient;
+  getFutureAppointments(patientId, callback){
+    let today = new Date();
     return Appointments.findAll({
       where: {
-        patientId: patientId
+        patientId: patientId,
+        appt_date:{
+          [Op.gt]: today
+        }
       },
-      order: [['appt_date', 'DESC']],
-      limit: 10
+      order: [['appt_date', 'ASC']]
     })
     .then((appts) => {
        callback(null, appts);
@@ -69,6 +71,5 @@ module.exports = {
      .catch((err) => {
        callback(err);
      });
-
   }
 }

@@ -14,7 +14,7 @@ module.exports = {
   },
   getProvider(id, callback){
     //let updatedPatient = patient;
-    return Provider.findById(id)
+    return Providers.findById(id)
      .then((provider) => {
        callback(null, provider);
      })
