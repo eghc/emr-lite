@@ -5,16 +5,7 @@ const providerQueries = require("../db/queries.providers.js");
 
 module.exports = {
   createAppt(req, res, next){
-    //check that the provider exists
-    //check that the location exists
-    // locationQueries.getLocation(req.body.location, (err0, location) => {
-    //   if(err0){
-    //     res.send(400);
-    //   }else{
-    //     providerQueries.getProvider(req.body.provider, (err1, provider) => {
-    //       if(err1){
-    //         res.send(400);
-    //       }else{
+
     let data = {
       appt_date: new Date(req.body.appt_date),
       provider: parseInt(req.body.provider),
@@ -22,18 +13,39 @@ module.exports = {
       status: "booked",
     }
     console.log(data);
-            appointmentQueries.addAppointment(req.params.id, data, (err2, appt) => {
-              console.log(err2);
-              if(err2){
+            appointmentQueries.addAppointment(req.params.id, data, (err0, appt) => {
+              console.log(err0);
+              if(err0){
                 res.send(400);
               }else{
-                res.send(appt);
+                locationQueries.getLocation(data.location, (err1, location) => {
+                  if(err1 || !location ){
+                    res.send(400);
+                  }else{
+                    providerQueries.getProvider(data.provider, (err2, provider) => {
+                      if(err2 || !provider){
+                        res.send(400);
+                      }else{
+                        appt.dataValues.provider = {
+                          id: provider.id,
+                          name: provider.name
+                        };
+
+                        appt.dataValues.location = {
+                          id: location.id,
+                          name: location.name
+                        };
+                        
+                        res.send(appt);
+                      }
+                    });
+                  }
+
+                });
+
               }
             });
-    //       }
-    //     });
-    //   }
-    // });
+
   },
   getAppts(req, res, next){
     appointmentQueries.getRecentAppointments(req.params.id, (err, appts) => {

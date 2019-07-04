@@ -59,7 +59,8 @@ module.exports = {
                 res.send(400);
               }else{
                 appointmentQueries.getAppointments(req.params.id, (err3, appts) => {
-                  let today = new Date();
+                  //let today = new Date();
+                  let today = new Date(new Date().toLocaleString("en-US", {timeZone: "UTC"}));
                   if(err3){
                     res.send(400);
                   }else{

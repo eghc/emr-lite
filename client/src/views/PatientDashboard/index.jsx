@@ -151,8 +151,14 @@ class PatientDashboard extends Component {
       .post('/createAppt/' + this.state.patientId, data)
       .then((response) => {
         if(response.data){
-          let today = new Date();
-          if(response.data.appt_date >= today){
+          //console.log("yep");
+          let today = new Date(new Date().toLocaleString("en-US", {timeZone: "UTC"}));
+          //console.log("yehaw");
+          // console.log(today);
+          // console.log(response.data.appt_date );
+          // console.log(response.data.appt_date >= today);
+          // console.log(response.data.appt_date > today);
+          if(new Date(response.data.appt_date) >= today){
             let tempApptData = this.state.patientFutureAppts.map(appt => {
               return this.handleApptData(appt);
             });
