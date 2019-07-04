@@ -1,10 +1,23 @@
 'use strict';
-const faker = require("faker");
+//const faker = require("faker");
+
+let randomLastNames = [
+  "Clayton",
+  "Harris",
+  "Clark",
+  "Diamond",
+  "Perlin",
+  "Sniff",
+  "Kaplan",
+  "Lilya",
+  "Lincoln",
+  "Hirst"
+]
 
 let providers = [];
 for(let i = 1 ; i <= 10 ; i++){
   providers.push({
-    name: "Dr. " + faker.name.lastName(),
+    name: "Dr. " + randomLastNames[i],
     createdAt: new Date(),
     updatedAt: new Date()
   });

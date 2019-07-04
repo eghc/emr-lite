@@ -1,10 +1,18 @@
 'use strict';
-const faker = require("faker");
+//const faker = require("faker");
+
+let randomCities = [
+  "Ojai",
+  "Santa Barbara",
+  "Ventura",
+  "Camarillo",
+  "Carpinteria"
+]
 
 let locations = [];
-for(let i = 1 ; i <= 10 ; i++){
+for(let i = 0 ; i < randomCities.length ; i++){
   locations.push({
-    name: faker.address.city(),
+    name: randomCities[i],
     createdAt: new Date(),
     updatedAt: new Date()
   });
