@@ -63,66 +63,76 @@ module.exports = {
                   if(err3){
                     res.send(400);
                   }else{
-                    let apptsFuture = [];
-                    let apptsPast = [];
-                    appts.map(appt => {
-                      //console.log(appt.dataValues.provider);
-                      providerQueries.getProvider(appt.provider, (err4, provider) => {
-                        if(err4){
-                          console.log(err4);
-                          res.send(400);
-                        }else{
+                    if(appts){
+                      let apptsFuture = [];
+                      let apptsPast = [];
+                      appts.map(appt => {
+                        //console.log(appt.dataValues.provider);
+                        providerQueries.getProvider(appt.provider, (err4, provider) => {
+                          if(err4){
+                            console.log(err4);
+                            res.send(400);
+                          }else{
 
-                          appt.dataValues.provider = {
-                            id: provider.id,
-                            name: provider.name
-                          };
+                            appt.dataValues.provider = {
+                              id: provider.id,
+                              name: provider.name
+                            };
 
 
-                          locationQueries.getLocation(appt.location, (err5, location) =>{
-                            if(err5){
-                              console.log(err5);
-                              res.send(400);
-                            }else{
-                              appt.dataValues.location = {
-                                id: location.id,
-                                name: location.name
-                              };
-
-                              //push to either future or past appt array
-                              if(appt.dataValues.appt_date >= today){
-                                console.log("future");
-                                apptsFuture.push(appt);
+                            locationQueries.getLocation(appt.location, (err5, location) =>{
+                              if(err5){
+                                console.log(err5);
+                                res.send(400);
                               }else{
-                                console.log("past");
-                                apptsPast.push(appt);
+                                appt.dataValues.location = {
+                                  id: location.id,
+                                  name: location.name
+                                };
+
+                                //push to either future or past appt array
+                                if(appt.dataValues.appt_date >= today){
+                                  console.log("future");
+                                  apptsFuture.push(appt);
+                                }else{
+                                  console.log("past");
+                                  apptsPast.push(appt);
+                                }
+
+
+                                if((apptsFuture.length + apptsPast.length) >= appts.length){
+                                  //console.log(apptsNew);
+                                  res.send({
+                                    patient: patient,
+                                    contact: contact,
+                                    vital: vital,
+                                    appts: {
+                                      future: apptsFuture,
+                                      past: apptsPast
+                                    }
+                                  });
+                                }
+
                               }
 
 
-                              if((apptsFuture.length + apptsPast.length) >= appts.length){
-                                //console.log(apptsNew);
-                                res.send({
-                                  patient: patient,
-                                  contact: contact,
-                                  vital: vital,
-                                  appts: {
-                                    future: apptsFuture,
-                                    past: apptsPast
-                                  }
-                                });
-                              }
+                            });
 
-                            }
+                          }
+                        });
+                      });
 
-
-                          });
-
+                    }else{
+                      res.send({
+                        patient: patient,
+                        contact: contact,
+                        vital: vital,
+                        appts: {
+                          future: null,
+                          past: null
                         }
                       });
-                    });
-
-
-
+                    }
                   }
                 });
                 //console.log("2");
