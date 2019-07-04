@@ -39,12 +39,29 @@ module.exports = {
     })
 
   },
-  getPatientsAppointments(patientId, callback){
+  getAppointments(patientId, callback){
     //let updatedPatient = patient;
     return Appointments.findAll({
       where: {
         patientId: patientId
       }
+    })
+    .then((appts) => {
+       callback(null, appts);
+     })
+     .catch((err) => {
+       callback(err);
+     });
+
+  },
+  getRecentAppointments(patientId, callback){
+    //let updatedPatient = patient;
+    return Appointments.findAll({
+      where: {
+        patientId: patientId
+      },
+      order: [['appt_date', 'DESC']],
+      limit: 10
     })
     .then((appts) => {
        callback(null, appts);
